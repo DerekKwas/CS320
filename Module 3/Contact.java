@@ -53,4 +53,33 @@ public class Contact {
 	public String getAddress() {
 		return address;
 	}
+	
+	// Setter methods
+	public void setFirstName(String newFirstName) {
+		if (newFirstName == null || newFirstName.length() > 10) {
+			throw new IllegalArgumentException("Invalid first name");
+		}
+		this.firstName = newFirstName;
+	}
+	
+	public void setLastName(String newLastName) {
+		if (newLastName == null || newLastName.length() > 10) {
+			throw new IllegalArgumentException("Invalid last name");
+		}
+		this.lastName = newLastName;
+	}
+	
+	public void setPhone(String newPhone) {
+		if (newPhone == null || newPhone.length() != 10) {
+			throw new IllegalArgumentException("Invalid phone number");
+		}
+		this.phone = newPhone;
+	}
+	
+	public void setAddress(String newAddress) {
+		if (newAddress == null || newAddress.length() > 30) {
+			throw new IllegalArgumentException("Invalid address");
+		}
+		this.address = newAddress;
+	}
 }
