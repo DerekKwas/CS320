@@ -1,23 +1,57 @@
 package contact;
 
+import java.util.ArrayList;
+
 public class ContactService {
 
+	// Create array list object to hold list of contacts
+	public ArrayList<Contact> contactList = new ArrayList<Contact>(); 
+	
+	// Function to add contact to contactList
 	public void addContact(String firstName, String lastName, String id, String phone, String address) {
+		for (int i = 0; i < contactList.size(); i++) {
+			if (contactList.get(i).getID() == id) {
+				throw new IllegalArgumentException("Contact ID already exists");
+			}
+		}
 		Contact contact = new Contact(firstName, lastName, id, phone, address);
-		// Functionality will be added to add this new contact to the in-memory data structure.
+		
+		contactList.add(contact);
 	}
 	
 	public void deleteContact(String id) {
-		// Functionality for accessing the in-memory data structure and using the id argument to find
-		// the correct contact will be added so the object can be deleted and the data structure can
-		// be updated if needed.
+		boolean contactFound = false;
+		for (int i = 0; i < contactList.size(); i++) {
+			if (contactList.get(i).getID() == id) {
+				contactList.remove(i);
+				contactFound = true;
+			}
+		}
+		if (!contactFound) {
+			throw new IllegalArgumentException("Contact ID does not exist");
+		}
 	}
 	
-	public void updateContact(String newFirstName, String newLastName, String newID, String newPhone, String newAddress) {
-		if (newFirstName == null || newLastName == null || newID == null || newPhone == null || newAddress == null) {
-			throw new IllegalArgumentException("All entries are null");
+	public void updateContact(String newFirstName, String newLastName, String id, String newPhone, String newAddress) {
+		for (int i = 0; i < contactList.size(); i++) {
+			if (contactList.get(i).getID() == id) {
+				if (newFirstName != null && newFirstName.length() <= 10) {
+					contactList.get(i).setFirstName(newFirstName);
+				}
+				if (newLastName != null && newLastName.length() <= 10) {
+					contactList.get(i).setLastName(newLastName);
+				}
+				if (newPhone != null && newPhone.length() == 10) {
+					contactList.get(i).setPhone(newPhone);
+				}
+				if (newAddress != null && newAddress.length() <= 30) {
+					contactList.get(i).setAddress(newAddress);
+				}
+				else {
+					throw new IllegalArgumentException("Not all entries valid");
+				}
+			}
 		}
-		// Functionality for accessing the in-memory data structure and using the id argument to find
-		// the correct contact will be added so the object's attributes can be updated.
+		throw new IllegalArgumentException("Contact ID does not exist");
 	}
 }

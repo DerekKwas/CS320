@@ -33,25 +33,9 @@ public class Contact {
 		this.address = address;
 	}
 	
-	// Getter methods
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
+	// Getter methods	
 	public String getID() {
 		return id;
-	}
-	
-	public String getPhone() {
-		return phone;
-	}
-	
-	public String getAddress() {
-		return address;
 	}
 	
 	// Setter methods

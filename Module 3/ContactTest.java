@@ -12,11 +12,11 @@ class ContactTest {
 	@Test
 	void testContact() {
 		Contact contact = new Contact("John", "Doe", "12345", "1234567890", "123 Alligator Alley");
-		assertTrue(contact.getFirstName().equals("John"));
-		assertTrue(contact.getLastName().equals("Doe"));
 		assertTrue(contact.getID().equals("12345"));
-		assertTrue(contact.getPhone().equals("1234567890"));
-		assertTrue(contact.getAddress().equals("123 Alligator Alley"));
+		contact.setFirstName("John");
+		contact.setLastName("Doe");
+		contact.setPhone("1234567890");
+		contact.setAddress("123 Alligator Alley");
 	}
 
 	// Test First Name
@@ -101,4 +101,79 @@ class ContactTest {
 		});
 	}
 
+	// Test Set First Name
+	@Test
+	void testContactSetFirstNameTooLong() {
+		Contact temp = new Contact("John", "Doe", "12345", "1234567890", "123 Alligator Alley");
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			temp.setFirstName("JohnDoeJohnDoe");
+		});
+	}
+	
+	@Test
+	void testContactSetFirstNameNull() {
+		Contact temp = new Contact("John", "Doe", "12345", "1234567890", "123 Alligator Alley");
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			temp.setFirstName(null);
+		});
+	}
+	
+	// Test Set Last Name
+	@Test
+	void testContactSetLastNameTooLong() {
+		Contact temp = new Contact("John", "Doe", "12345", "1234567890", "123 Alligator Alley");
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			temp.setLastName("DoeDoeDoeDoe");
+		});
+	}
+	
+	@Test
+	void testContactSetLastNameNull() {
+		Contact temp = new Contact("John", "Doe", "12345", "1234567890", "123 Alligator Alley");
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			temp.setLastName(null);
+		});
+	}
+	
+	// Test Set Phone
+	@Test
+	void testContactSetPhoneTooLong() {
+		Contact temp = new Contact("John", "Doe", "12345", "1234567890", "123 Alligator Alley");
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			temp.setPhone("1234567890123");
+		});
+	}
+	
+	@Test
+	void testContactSetPhoneNull() {
+		Contact temp = new Contact("John", "Doe", "12345", "1234567890", "123 Alligator Alley");
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			temp.setPhone(null);
+		});
+	}
+	
+	// Test Set Last Name
+	@Test
+	void testContactSetAddressLong() {
+		Contact temp = new Contact("John", "Doe", "12345", "1234567890", "123 Alligator Alley");
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			temp.setAddress("123 Alligator & Crocodile Alley");
+		});
+	}
+	
+	@Test
+	void testContactSetAddressNull() {
+		Contact temp = new Contact("John", "Doe", "12345", "1234567890", "123 Alligator Alley");
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			temp.setAddress(null);
+		});
+	}
 }
